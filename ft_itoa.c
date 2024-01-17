@@ -1,46 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zel-baz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 16:27:25 by zel-baz           #+#    #+#             */
-/*   Updated: 2023/12/17 15:44:22 by zel-baz          ###   ########.fr       */
+/*   Created: 2024/01/02 23:05:45 by zel-baz           #+#    #+#             */
+/*   Updated: 2024/01/03 02:11:19 by zel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdbool.h>
 
-static int	ft_isspace(char c)
+static int	num_len(int n)
 {
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	signal;
-	int	result;
+	size_t	i;
 
 	i = 0;
-	signal = 1;
-	result = 0;
-	while (ft_isspace(str[i]))
+	if (n < 0)
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (n == 0)
+		return (1);
+	while (n)
 	{
-		if (str[i] == '-')
-			signal = -signal;
 		i++;
+		n /= 10;
 	}
-	while (ft_isdigit(str[i]))
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t	len;
+	char	*str;
+
+	len = num_len(n);
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	if (n < 0)
 	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
+		str[0] = '-';
+		n = -n;
 	}
-	return (result * signal);
+	str[len] = '\0';
+	while (n > 0)
+	{
+		str[len - 1] = ((n % 10) + '0');
+		n /= 10;
+		len--;
+	}
+	return (str);
 }

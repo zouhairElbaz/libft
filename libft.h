@@ -6,7 +6,7 @@
 /*   By: zel-baz <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:24:17 by zel-baz           #+#    #+#             */
-/*   Updated: 2024/01/01 02:08:13 by zel-baz          ###   ########.fr       */
+/*   Updated: 2024/01/10 06:35:55 by zel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ struct s_list *next;
 
 t_list  *ft_lstnew(void *constent);
 void    ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 
 #endif

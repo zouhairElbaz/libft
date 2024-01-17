@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I libft.h
+CFLAGS = -Wall -Werror -Wextra
+DIR = -I ./
 AR = ar crs
 RM = rm -rf
 
@@ -31,7 +32,8 @@ FILES = ft_isalpha.c ft_isdigit.c \
 		ft_putstr_fd.c ft_putendl_fd.c \
 		ft_putnbr_fd.c ft_memmove.c \
 		ft_striteri.c ft_strmapi.c \
-		ft_lstnew.c ft_itoa.c
+		ft_itoa.c ft_lstnew.c \
+		ft_lstadd_front.c ft_lstadd_back.c
 
 OBJ = $(FILES:.c=.o)
 
@@ -43,7 +45,7 @@ $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 %.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)
